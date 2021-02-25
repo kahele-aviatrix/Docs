@@ -71,8 +71,14 @@ Follow the steps below to put the Aviatrix Controller behind an AWS ALB:
       Here is an example setting up the entry in Route53:
 
       |imageRoute53Example|
+      
+#. Configure your Auto-Scaling set to include the Load Balancer reference. This step is necessary to make sure that the replacement Controller instance re-registers
+itself into the Load Balancer. If you do not have this reference, the replacement Controller won't re-register automatically back into the Load Balancer. Our native
+Cloud Formation template does not accomodate this use case by default, so this is an extra step necessary for this particular use case.     
 
-   
+   |imageAutoScalingSetTargetGrp-LB| image:: controller_ssl_elb_media/AutoScalingSetTargetGrp-LB.png
+:scale: 75%
+
 .. |imageConfigureStep1| image:: controller_ssl_elb_media/configure_lb_step1.png
    :scale: 75%
 
